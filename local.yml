@@ -11,4 +11,4 @@
         - shellinabox
         - ipython
         - python-ipdb
-      become: true
+      sudo: yes
