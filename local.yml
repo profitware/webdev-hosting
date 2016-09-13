@@ -1,0 +1,15 @@
+---
+
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - name: install latest versions of packages
+      apt: name={{ item }} state=latest
+      with_items:
+        - nginx
+        - shellinabox
+        - ipython
+        - python-ipdb
+      become: true
+      become_user: root
