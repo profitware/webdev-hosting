@@ -12,4 +12,3 @@
         - ipython
         - python-ipdb
       become: true
-      become_user: root
