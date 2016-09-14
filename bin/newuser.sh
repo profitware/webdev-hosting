@@ -13,6 +13,6 @@ for USERNAME in "$@"
 do
   echo '[newuser] adding user' $USERNAME
   sudo adduser --disabled-password --gecos "" $USERNAME
-  echo '$USERNAME:$PASSWORD' | sudo chpasswd
+  echo $USERNAME:$PASSWORD | sudo chpasswd
   sudo chage -d 0 $USERNAME
 done
