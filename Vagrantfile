@@ -56,6 +56,7 @@ Vagrant.configure("2") do |config|
     sudo ln -s /vagrant/conf/hosting.conf /etc/nginx/sites-enabled/hosting.conf
     sudo ln -s /vagrant/conf/shellinabox /etc/default/shellinabox
     sudo ln -s /vagrant/bin/newuser.sh /usr/local/bin/u
+    sudo chmod a+x /usr/local/bin/u
 
     sudo mkdir /etc/skel/www
     ln -s /vagrant/www /home/vagrant/www
