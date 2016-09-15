@@ -59,6 +59,7 @@ Vagrant.configure("2") do |config|
     sudo chmod a+x /usr/local/bin/u
 
     sudo mkdir /etc/skel/www
+    rm /home/vagrant/www
     ln -s /vagrant/www /home/vagrant/www
 
     sudo service nginx restart
