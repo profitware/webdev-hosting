@@ -15,4 +15,6 @@ do
   sudo adduser --disabled-password --gecos "" $USERNAME
   echo $USERNAME:$PASSWORD | sudo chpasswd
   sudo chage -d 0 $USERNAME
+  sudo hostingconf $USERNAME
+  sudo service nginx reload
 done
