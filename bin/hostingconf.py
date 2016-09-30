@@ -5,17 +5,28 @@ from sys import argv
 
 
 FIRST_PORT = 1000
-CONF_DST = '/vagrant/conf/hosting_{{ username }}.conf'
+CONF_DST = '/vagrant/conf/hosting_{username}.conf'
 
-HOST_FORMAT = u"""
-server {
+HOST_FORMAT = r"""
+server {{
        listen 80;
-       server_name "~^{{ username }}\.(?:[0-9a-z-]+)\.(?:[a-z]+)$";
+       server_name "~^{username}\.(?:[0-9a-z-]+)\.(?:[a-z]+)$";
 
-       location / {
-           proxy_pass http://127.0.0.1:{{ port }}/;
-       }
-}
+       index index.html index.htm;
+
+       location / {{
+           include /etc/nginx/proxy_params;
+           proxy_pass http://127.0.0.1:{port}/;
+
+           proxy_intercept_errors on;
+           error_page 502 =200 /local$uri;
+       }}
+
+       location /local/ {{
+           internal;
+           alias /home/{username}/www/;
+       }}
+}}
 """
 
 
